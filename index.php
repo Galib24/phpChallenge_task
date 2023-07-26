@@ -42,6 +42,8 @@ if (isset($_POST['upload'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Social Point</title>
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/a4c894e3d0.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 
@@ -68,13 +70,17 @@ if (isset($_POST['upload'])) {
 
     <?php
     $db = mysqli_connect('localhost', 'root', '', 'photos');
-    $sql = "SELECT * FROM images";
+    $sql = "SELECT * FROM images ORDER BY id DESC";
     $result = mysqli_query($db, $sql);
 
     while ($row = mysqli_fetch_array($result)) {
-        echo "<div id = 'img_div'>";
-        echo "<img src='assets/images/posts/".$row['image'] . "'>";
+        echo "<div  id = 'img_div'>";
+        echo "<img class='w-50' src='assets/images/posts/".$row['image'] . "'>";
         echo "<p>" . $row['text'] . "</p>";
+        echo "<i class='fa-regular fa-heart mx-2'> </i>";
+        echo "<i class='fa-solid fa-comment mx-2'></i>";
+        echo "<i class='fa-solid fa-arrow-right mx-2'></i>";
+        echo "<input type='text' class='my-3 form-control w-50' placeholder='Write Comments '>";
         echo "</div>";
     }
 
